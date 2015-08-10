@@ -1,0 +1,33 @@
+---
+driver:
+  name: vagrant
+#driver_config:
+  provision_command: rpm -ihv /opt/sources/chef-12.4.1-1.el6.x86_64.rpm
+  require_chef_omnibus: false
+provisioner:
+  name: chef_zero
+
+platforms:
+#  - name: ubuntu-12.04
+#  - name: centos-6.4
+  - name: centos-6.5
+    #driver:
+    #  box: chef/centos-6.5
+    driver_config:
+      image: chef/centos-6.5
+      
+suites:
+  - name: hwtest
+    driver:
+      vm_hostname: hwtest.local.com
+      network:
+        - ["private_network",{ip: "192.168.56.150"}]
+      customize:
+        memory: 2048
+        cpus: 2
+      synced_folders: 
+        - ["c:\\opt\\chefclient\\", "/opt/sources"]
+    run_list:
+      - recipe[hw_test::default]
+
+    attributes:

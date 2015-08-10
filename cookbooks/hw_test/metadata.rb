@@ -1,0 +1,11 @@
+name             'hw_test'
+maintainer       'The Authors'
+maintainer_email 'you@example.com'
+license          'all_rights'
+description      'Installs/Configures hw_test'
+long_description 'Installs/Configures hw_test'
+version          '0.1.0'
+
+depends "selinux", '~> 0.8.0'
+depends "selinux", '~> 0.8.0'
+depends "hostsfile", '~> 2.4.5'
